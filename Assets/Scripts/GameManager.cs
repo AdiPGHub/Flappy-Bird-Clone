@@ -4,17 +4,16 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     private Player player;
-    // private Spawner spawner;
     public Text scoreText;
     public GameObject playButton;
     public GameObject lostImage;
+    public GameObject quitImage;
 
     private int score;
 
     private void Awake() {
         Application.targetFrameRate = 60;
         player = FindObjectOfType<Player>();
-        // spawner = FindObjectOfType<Spawner>();
         Pause();
     }
 
@@ -23,6 +22,7 @@ public class GameManager : MonoBehaviour
         scoreText.text = score.ToString();
         playButton.SetActive(false);
         lostImage.SetActive(false);
+        quitImage.SetActive(false);
         Time.timeScale = 1f;
         player.enabled = true;
 
@@ -45,6 +45,11 @@ public class GameManager : MonoBehaviour
     public void gameOver() {
         lostImage.SetActive(true);
         playButton.SetActive(true);
+        quitImage.SetActive(true);
         Pause();
+    }
+
+    public void quitGame() {
+        Application.Quit();
     }
 }

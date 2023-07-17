@@ -28,6 +28,14 @@ public class Player : MonoBehaviour {
         if(Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0)) {
             direction = Vector3.up * strength;
         }
+
+        // if(Input.touchCount > 0) {
+        //     Touch touch = Input.GetTouch(0);
+        //     if(touch.phase == TouchPhase.Began) {
+        //         direction = Vector3.up * strength;
+        //     }
+        // }
+        
         transform.position += direction * Time.deltaTime;
         direction.y += gravity * Time.deltaTime;
         
@@ -50,6 +58,9 @@ public class Player : MonoBehaviour {
         }
         else if(other.gameObject.tag == "Score") {
             FindObjectOfType<GameManager>().increaseScore();
+        }
+        else if(other.gameObject.tag == "ExitGame") {
+            FindObjectOfType<GameManager>().quitGame();
         }
     }
 

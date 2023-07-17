@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Score
   - Defeat
+  - ExitGame
   layers:
   - Default
   - TransparentFX
