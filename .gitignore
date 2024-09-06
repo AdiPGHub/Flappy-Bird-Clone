@@ -1,0 +1,57 @@
+# Unity generated folders
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+[Mm]emoryCaptures/
+
+# Auto-generated Unity settings
+[Dd]ebug/
+
+# OS-generated files
+.DS_Store
+Thumbs.db
+
+# Visual Studio
+.vscode/
+.vs/
+*.csproj
+*.sln
+*.user
+*.suo
+*.tmp
+*.userprefs
+
+# Rider IDE
+.idea/
+*.iml
+
+# Build files
+[Bb]uilds/
+*.apk
+*.aab
+*.exe
+*.app
+*.jar
+*.unitypackage
+
+# Unity Asset Store files
+Assets/Plugins/
+
+# Logs
+*.log
+
+# Cache files
+[Cc]ache/
+
+# Unity local configuration files
+*.pidb
+*.booproj
+*.user
+*.swp
+*.lock
+*.lock.json
+*.csproj
+*.sln
