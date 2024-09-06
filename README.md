@@ -29,5 +29,12 @@
 	</ol>
 </p>
 
+<h2>What's Next?</h2>
+<p>
+	<ol>
+		<li>To add audio to the game, because what's the fun of a game, without audio. Right? :)</li>
+		<li>A Faithful Successor</li>
+	</ol>
+</p>
 
 <br/>
