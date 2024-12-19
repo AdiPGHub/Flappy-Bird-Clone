@@ -153,7 +153,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 50}
   m_MaxSize: {x: 24288, y: 8096}
   vertical: 0
-  controlID: 73
+  controlID: 72
   draggingID: 0
 --- !u!114 &7
 MonoBehaviour:
@@ -277,7 +277,7 @@ MonoBehaviour:
   m_MinSize: {x: 400, y: 100}
   m_MaxSize: {x: 32384, y: 16192}
   vertical: 0
-  controlID: 153
+  controlID: 24
   draggingID: 0
 --- !u!114 &12
 MonoBehaviour:
@@ -379,7 +379,7 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 0
-    y: 24
+    y: 652
     width: 189
     height: 334
   m_SerializedDataModeController:
@@ -396,9 +396,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 
+      m_SelectedIDs: 7ef10000
       m_LastClickedID: 0
-      m_ExpandedIDs: 42c6ffff8ac7ffff16caffff72d6ffffbad7ffff1adaffff5ee3ffffa6e4ffff06e7ffff4cefffff94f0ffff24f3ffffe4faffff
+      m_ExpandedIDs: 281dffff101effffa21effff441fffff1224ffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -445,7 +445,7 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 0
-    y: 24
+    y: 79
     width: 738
     height: 547
   m_SerializedDataModeController:
@@ -1108,8 +1108,8 @@ MonoBehaviour:
     m_TextWithWhitespace: "Project\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 191
-    y: 24
+    x: 190
+    y: 652
     width: 845
     height: 334
   m_SerializedDataModeController:
@@ -1134,7 +1134,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scripts
+    - Assets/Scenes
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -1144,17 +1144,17 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 82
   m_LastFolders:
-  - Assets/Scripts
+  - Assets/Scenes
   m_LastFoldersGridSize: 82
   m_LastProjectPath: C:\Users\Adi\Desktop\Data (Projects)\3. Game Development\Unity\3.
-    Flappy Bird Clone\Flappy Bird Clone
+    Flappy Bird Clone\Flappy-Bird-Clone
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: d2b00000
-    m_LastClickedID: 45266
-    m_ExpandedIDs: 
+    m_SelectedIDs: 40f90000
+    m_LastClickedID: 63808
+    m_ExpandedIDs: 000000003ee9000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1262,8 +1262,8 @@ MonoBehaviour:
     m_TextWithWhitespace: "Console\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 1038
-    y: 24
+    x: 1037
+    y: 652
     width: 576
     height: 334
   m_SerializedDataModeController:
@@ -1298,8 +1298,8 @@ MonoBehaviour:
     m_TextWithWhitespace: "Inspector\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 1616
-    y: 24
+    x: 1615
+    y: 79
     width: 304
     height: 907
   m_SerializedDataModeController:
@@ -1383,8 +1383,8 @@ MonoBehaviour:
     m_TextWithWhitespace: "Game\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 740
-    y: 24
+    x: 739
+    y: 79
     width: 874
     height: 547
   m_SerializedDataModeController:
