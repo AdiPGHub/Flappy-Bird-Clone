@@ -2,77 +2,86 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-	private SpriteRenderer spriteRenderer;      // Hamari saari images ek sprite hoti hai and unhi ko render karne ke liye spriteRenderer use hota hai.
-	public Sprite[] sprites;    // sprites ek list hai jisme hamari Flappy Bird ki alag alag images hai, jinhe ek ke baad ek chala ke animation banega.
-	private int spriteIndex;    // spriteIndex is doing the same work as "i" in a loop.
-	private Vector3 direction;
-	public float gravity = -22f;
-	public float strength = 8f;
-	public float tilt = 5f;
+	// For changing the Sprites to make it look like Flappy is flapping its wings
+	SpriteRenderer spriteRenderer;
+	public Sprite[] sprites;
+	int spriteInd = -1;
+	public float repeatFreq = 0.15f;
+	float angleRotateFlappy = -1.25f;
 
-	private void Awake()
+	// For making the Flappy go up and down
+	Rigidbody2D rb;
+	Vector3 direction;
+	bool jumpRequested = false;
+	public float strength = 5f;
+	public float gravity = -9.5f;
+
+	void Awake()
 	{
 		spriteRenderer = GetComponent<SpriteRenderer>();
+		rb = GetComponent<Rigidbody2D>();
 	}
 
-	private void Start()
+	void Start()
 	{
-		InvokeRepeating(nameof(AnimateSprite), 0.1f, 0.1f);
+		InvokeRepeating(nameof(AnimateSprite), 0, repeatFreq);
 	}
 
-	private void OnEnable()
+	void OnEnable()
 	{
-		Vector3 position = transform.position;
-		position.y = 0f;
-		transform.position = position;
-		direction = Vector3.zero;
+		// transform.position = new Vector3(transform.position.x, 0, transform.position.z);
+		transform.SetPositionAndRotation(new Vector3(transform.position.x, 0, transform.position.z), Quaternion.identity);
 	}
 
-	private void Update()
+	void OnDisable()
 	{
-		if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
+		direction.y = 0;
+		transform.position += Time.deltaTime * direction;
+	}
+
+	void Update()
+	{
+		// Check if the Space key is pressed or the Left Mouse Button is clicked or the Touch Screen is touched
+		if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0) || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began))
 		{
+			jumpRequested = true;
+		}
+	}
+
+	void FixedUpdate()
+	{
+		// Apply the physics-based jump if input was detected and reset jumpRequested to False
+		if (jumpRequested)
+		{
+			// rb.linearVelocity = strength * Vector2.up;
 			direction = Vector3.up * strength;
+			transform.rotation = Quaternion.Euler(0, 0, 25);
+			jumpRequested = false;
+			FindAnyObjectByType<AudioManager>().PlaySound("Flap");
 		}
 
-		// if(Input.touchCount > 0) {
-		//     Touch touch = Input.GetTouch(0);
-		//     if(touch.phase == TouchPhase.Began) {
-		//         direction = Vector3.up * strength;
-		//     }
-		// }
-
-		transform.position += direction * Time.deltaTime;
-		direction.y += gravity * Time.deltaTime;
-
-		Vector3 rotation = transform.eulerAngles;
-		rotation.z = direction.y * tilt;
-		transform.eulerAngles = rotation;
+		direction.y += Time.deltaTime * gravity;
+		transform.position += Time.deltaTime * direction;
+		// rb.linearVelocity += Time.fixedDeltaTime * gravity * Vector2.up;
+		transform.Rotate(0, 0, angleRotateFlappy);
 	}
 
-	private void AnimateSprite()
+	void OnTriggerEnter2D(Collider2D other)
 	{
-		spriteIndex++;
-		if (spriteIndex >= sprites.Length)
+		if (other.gameObject.CompareTag("GameOver"))
 		{
-			spriteIndex = 0;
+			FindAnyObjectByType<GameManager>().GameOver();
 		}
-		spriteRenderer.sprite = sprites[spriteIndex];
+		else if (other.gameObject.CompareTag("AddScore"))
+		{
+			FindAnyObjectByType<GameManager>().AddScore();
+		}
 	}
 
-	private void OnTriggerEnter2D(Collider2D other)
+	void AnimateSprite()
 	{
-		if (other.gameObject.CompareTag("Defeat"))
-		{
-			FindFirstObjectByType<GameManager>().GameOver();
-		}
-		else if (other.gameObject.CompareTag("Score"))
-		{
-			FindFirstObjectByType<GameManager>().IncreaseScore();
-		}
-		else if (other.gameObject.CompareTag("ExitGame"))
-		{
-			FindFirstObjectByType<GameManager>().QuitGame();
-		}
+		spriteInd++;
+		spriteInd %= sprites.Length;
+		spriteRenderer.sprite = sprites[spriteInd];
 	}
 }

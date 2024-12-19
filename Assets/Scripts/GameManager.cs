@@ -3,59 +3,76 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-	private Player player;
-	public Text scoreText;
-	public GameObject playButton;
-	public GameObject lostImage;
-	public GameObject quitImage;
+	public Player player;
+	int score;
+	public Text scoreTxt;
+	public GameObject playBtn, quitBtn;
+	public GameObject ImgGame, ImgOver, ImgLogo;
+	// public GameObject ImgGame, ImgOver, ImgLogo, ImgGet, ImgReady;
 
-	private int score;
-
-	private void Awake()
+	void Awake()
 	{
 		Application.targetFrameRate = 60;
-		player = FindFirstObjectByType<Player>();
 		Pause();
+		// score = 0;
+		// scoreTxt.text = "0";
+	}
+
+	void Pause()
+	{
+		// Pause the game and set time movement to 0. The update functions will stop working.
+		Time.timeScale = 0;
+		player.enabled = false;
 	}
 
 	public void Play()
 	{
 		score = 0;
-		scoreText.text = score.ToString();
-		playButton.SetActive(false);
-		lostImage.SetActive(false);
-		quitImage.SetActive(false);
-		Time.timeScale = 1f;
-		player.enabled = true;
+		scoreTxt.text = "0";
 
-		Moving[] moving = FindObjectsByType<Moving>(FindObjectsSortMode.None);
-		for (int i = 0; i < moving.Length; i++)
+		// Turn all the required UI elements to On and non-required ones to Off.
+		scoreTxt.gameObject.SetActive(true);
+		playBtn.SetActive(false);
+		quitBtn.SetActive(false);
+		// ImgGet.SetActive(true);
+		// ImgReady.SetActive(true);
+		ImgLogo.SetActive(false);
+		ImgGame.SetActive(false);
+		ImgOver.SetActive(false);
+
+		PipeMover[] pipeMovers = FindObjectsByType<PipeMover>(FindObjectsSortMode.None);
+		foreach (PipeMover pipe in pipeMovers)
 		{
-			Destroy(moving[i].gameObject);
+			Destroy(pipe.gameObject);
 		}
-	}
 
-	public void Pause()
-	{
-		Time.timeScale = 0f;
-		player.enabled = false;
-	}
-
-	public void IncreaseScore()
-	{
-		score++;
-		scoreText.text = score.ToString();
+		Time.timeScale = 1;
+		player.enabled = true;
 	}
 
 	public void GameOver()
 	{
-		lostImage.SetActive(true);
-		playButton.SetActive(true);
-		quitImage.SetActive(true);
-		Pause();
+		// Play the Death Sound
+		FindAnyObjectByType<AudioManager>().PlaySound("Death");
+
+		// Turn all the required UI elements to On and non-required ones to Off.
+		ImgGame.SetActive(true);
+		ImgOver.SetActive(true);
+		playBtn.SetActive(true);
+		quitBtn.SetActive(true);
+
+		// Debug.Log("LOSER");
+		Pause(); // Pause the game
 	}
 
-	public void QuitGame()
+	public void AddScore()
+	{
+		FindAnyObjectByType<AudioManager>().PlaySound("Score");
+		score++;
+		scoreTxt.text = score.ToString();
+	}
+
+	public void Quit()
 	{
 		Application.Quit();
 	}

@@ -2,7 +2,7 @@
 
 <div align="center">
 <img src = "https://i.postimg.cc/tg6D9y8D/flappy.png"
-	alt = "Simon Logo"
+	alt = "Flappy Bird Logo"
 	width = 20% />
 </div>
 
