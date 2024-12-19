@@ -38,9 +38,11 @@
 
 <h2>Credits</h2>
 <p>
-	Sprites: Dong Nguyen
-	Sound Effects (Flap, Score & Death): Dong Nguyen
-	BG Music: Microsoft
+	<ul>
+		<li><b>Sprites:</b> <i>Dong Nguyen</i></li>
+		<li><b>Sound Effects (Flap, Score & Death):</b> <i>Dong Nguyen</i></li>
+		<li><b>BG Music:</b> <i>Microsoft</i></li>
+	</ul>
 </p>
 
 <br/>
